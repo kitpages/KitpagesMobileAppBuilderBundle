@@ -1,0 +1,44 @@
+kitpages_chain:
+    command_list:
+        CommandSample:
+            class: '\Kitpages\ChainBundle\Tests\Sample\CommandSample'
+            parameter_list:
+                return: 'changedByCommandConfig1'
+        CommandSampleOriginal:
+            class: '\Kitpages\ChainBundle\Tests\Sample\CommandSample'
+
+    chain_list:
+        StandardChain:
+            command_list:
+                CommandSample: ~
+
+        StandardChainAndCommandParameter:
+            command_list:
+                CommandSample:
+                    parameter_list:
+                        return: 'ResultStandardChainAndCommandParameter'
+
+        CustomChainAndCommandParameter:
+            class: '\Kitpages\ChainBundle\Tests\Sample\ChainSample'
+            command_list:
+                CommandSample:
+                    parameter_list:
+                        return: 'ResultCustomChainAndCommandParameter'
+
+        CustomChainAndTwoCommands:
+            class: '\Kitpages\ChainBundle\Tests\Sample\ChainSample'
+            command_list:
+                CommandSample: ~
+                CommandSampleOriginal: ~
+
+        StandardChainAndNewCommand:
+            command_list:
+                MyNewCommand:
+                    class: '\Kitpages\ChainBundle\Tests\Sample\CommandSample'
+                    parameter_list:
+                        return: 'ResultStandardChainAndNewCommand'
+
+
+framework:
+    secret: "test"
+    test: ~
